@@ -6,7 +6,8 @@ In this section of the lab, we see how RedHat OpenShift performs self healing wh
 
 To delete the pod, login to your cluster with your IBMid by browsing to the `OpenShift web console` (*see your environment assignment e-mail for the link to your ROKS Cluster URL*).  From the administrator section menu on the left, clink on the `Workload` drop down menu and click on Pods, and at the top, select the `tools` project.  Select one of the `ibm-sfg-b2bi-sfg` pods to delete and end of the row, click the vertical dot menu and click delete. 
 
-      ![version](images/Delete-a-pod.png "Screenshot of Deletion")
+  ![version](images/Delete-a-pod.png "Screenshot of Deletion")
+
       
 After the pod is deleted, the pod is reinstantiated and processing work as part of the deployed Sterling B2B Integrator cluster.
 
@@ -14,9 +15,9 @@ After the pod is deleted, the pod is reinstantiated and processing work as part 
     > While the pod is being terminated a new pod is being created.
     > If you delete on one of the pods or it crashes Openshift will automatically create a new pod to replace the problem pod
       
-      ![verion](images/terminat.png "Screenshot of termination")
+  ![verion](images/terminat.png "Screenshot of termination")
       
-      ![verion](images/pod-up.png "Screenshot of termination")
+  ![verion](images/pod-up.png "Screenshot of termination")
 
 ---
 
@@ -42,20 +43,21 @@ Now go update the `values.yaml` file in your repo as follows:
     global:
       image:
         repository: cp.icr.io/cp/ibm-sfg/sfg
-        tag: 6.1.0.1        
+        tag: 6.1.0.0          <--- change to 6.1.0.1       
     ```
 _  💡 **NOTE**  
 > Push the changes & sync ArgoCD.
 
 Argocd will detect these changes and create a new pod with the latest version.
 
-        ![verion](images/pods-termination-v0.png "Screenshot of version")
+  ![verion](images/pods-termination-v0.png "Screenshot of version")
         
-         ![verion](images/pods-version2.png "Screenshot of version")       
+  ![verion](images/pods-version2.png "Screenshot of version")       
 
-        ![verion](images/newerversion.png "Screenshot of version") 
 
 To verify the version, simply go to the Sterling app menu and click on the support button in the Sterling Console.   
+  ![verion](images/newerversion.png "Screenshot of version") 
+
 
 ---
 
