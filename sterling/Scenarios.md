@@ -1,64 +1,139 @@
-# B2Bi Foundational Capabilities 
-### Proof Points
-1. Self-healing
-    - First Delete a pod.
-         <!-- ![verion](images/delete.png "Screenshot of termination") --> 
+# B2Bi Capabilities - Use Case Requirements  
+
+## 1. Self-healing
+
+In this section of the lab, we see how RedHat OpenShift performs self healing when a pod is deleted. 
+
+To delete the pod, login to your cluster with your IBMid by browsing to the `OpenShift web console` (*see your environment assignment e-mail for the link to your ROKS Cluster URL*).  From the administrator section menu on the left, clink on the `Workload` drop down menu and click on Pods, and at the top, select the `tools` project.  Select one of the `ibm-sfg-b2bi-sfg` pods to delete and end of the row, click the vertical dot menu and click delete. 
+
       ![version](images/Delete-a-pod.png "Screenshot of Deletion")
       
-    - After pod is deleted, pod is reinstantiated and processing work as part of the deployed Sterling B2B Integrator cluster.
+After the pod is deleted, the pod is reinstantiated and processing work as part of the deployed Sterling B2B Integrator cluster.
+
     >💡 **NOTE**     
     > While the pod is being terminated a new pod is being created.
-    > Let say we kill one of the pods or it crashes.
-    > Openshift will automatically create a new pod to replace the deleted pod
+    > If you delete on one of the pods or it crashes Openshift will automatically create a new pod to replace the problem pod
       
       ![verion](images/terminat.png "Screenshot of termination")
       
       ![verion](images/pod-up.png "Screenshot of termination")
-      
-      
-   
 
-1. Upgrade/Rollback 
-    - Shorten upgrade processes to lessen downtime.
-    - If something goes wrong- then roll back to previous version.
-    - Newly instantiated version is processing work as part of the deployed Sterling B2B Integrator cluster and subsequently reverted back to the earlier running version.
-    - Let say We want to upgrade to a new fix pack.
-    - Check the current version which is version 6.1.0.0. Now if we want to upgrade, we need to update the values.yaml file in git.
+---
 
+## 2. Upgrade/Rollback 
 
-        ![verion](images/v-1.png "Screenshot of version")
+In this section of the lab, we see how you can upgrade and roll back versions using the GitOps method.
 
-    - Upgrading the version from `6.1.0.0` to `6.1.0.1` 
-    - The upgrade will remove and terminate pods from the previous version. 
-    - Argocd will detect these changes and create a new pod with the latest version.
+Using the GitOps method we see how the upgrade process is shorten.  We are also able to roll back to previous version if there is an issue.  The GitOps method also provides for traceability as to when and who made the change in the commit record in GitHub.
 
+To upgrade the version, first go to the IBM Sterling Console application and check the current version, which is version `6.1.0.0`. 
+
+  ![verion](images/v-1.png "Screenshot of version")
+
+Now go update the `values.yaml` file in your repo as follows:
+
+- Step 1:
+    ```bash
+    cd multi-tenancy-gitops-services/instances/ibm-sfg-b2bi/
+    ```
+- Step 2: Inside `values.yaml`, find & set the tag from `6.1.0.0` to `6.1.0.1`
+    ```yaml
+  ibm-sfg-prod:
+    global:
+      image:
+        repository: cp.icr.io/cp/ibm-sfg/sfg
+        tag: 6.1.0.1        
+    ```
+_  💡 **NOTE**  
+> Push the changes & sync ArgoCD.
+
+Argocd will detect these changes and create a new pod with the latest version.
 
         ![verion](images/pods-termination-v0.png "Screenshot of version")
         
          ![verion](images/pods-version2.png "Screenshot of version")       
 
-        ![verion](images/newerversion.png "Screenshot of version")  
+        ![verion](images/newerversion.png "Screenshot of version") 
 
-1. Horizontal Pod Autoscaling
-    - Newly instantiated pod is processing work as a part of the deployed Sterling B2B Integrator cluster.
-    - Dynamically scale based on load/peak processing 
-    The app can scale up and down manually or automatically
-    - This option gives the max number of pod and mini number of pods we want to create based on workload and CPU usage.
-    - Let go to git and make changes on the values.yaml file.
-    - Set the replicaCount: 2 and enable autoscaling to True for both asi and ac components
-      minReplicas: 2
-      maxReplicas: 4
-      targetCPUUtilizationPercentage: 60
-    - If a pod start using more than 60% of the allocated CPU is going to spin up a new pod
+To verify the version, simply go to the Sterling app menu and click on the support button in the Sterling Console.   
+
+---
+
+## 3. Horizontal Pod Autoscaling
+
+In this section of the lab, we see how Horizontal Pod Autoscaling works in the OpenShift cluster.  We will see how the Sterling B2B Integrator instaance dynamically scales based on the load on the system.  For this lab we will simulate the load on the system by modifing the deployment paramaters via the GitOps repo.    Sterling B2B Integrator can scale up and down manually or automatically.
+
+The deployments settings below affect the load, which are the number of pods and the CPU usage. 
+
+Before we change the settings to simulate the load,  we will increse the relicca to 2 and enable autoscaling.  Follow the steps below:
+
+  - Step 1:
+    ```bash
+    cd multi-tenancy-gitops-services/instances/ibm-sfg-b2bi/
+    ```
+  - Step 2: Inside `values.yaml`, find & set the `replicaCount` and `enabled` fields for both the `asi` and `ac` Sterling componets:
+
+    ```yaml
+    asi:
+      replicaCount: 1   <--- change to 2
+      ....
+      autoscaling:
+        enabled: false  <----change to true
+        minReplicas: 2
+        maxReplicas: 4
+        targetCPUUtilizationPercentage: 60
+    ```
+    ```yaml
+    ac:
+      replicaCount: 1   <--- change to 2
+      ....
+      autoscaling:
+        enabled: false  <----change to true
+        minReplicas: 2
+        maxReplicas: 4
+        targetCPUUtilizationPercentage: 60
+    ```
+      
+> 💡 **NOTE**  
+> Push the changes & sync ArgoCD.
+
+
+Now, to simulate a load on the system so that we trigger the auto scaling of pods, we will lower the target CPU utiliziation by modifying the `values.yaml` file in GitOps repo.    Follow the steps below:
+- Step 1:
+    ```bash
+    cd multi-tenancy-gitops-services/instances/ibm-sfg-b2bi/
+    ```
+  - Step 2: Inside `values.yaml`, find & set the `replicaCount` and `enabled` fields for both the `asi` and `ac` Sterling componets:
+
+    ```yaml
+    asi:
+      replicaCount: 2   
+      ....
+      autoscaling:
+        enabled: true  
+        minReplicas: 2
+        maxReplicas: 4
+        targetCPUUtilizationPercentage: 60  <----change to 20
+    ```
+    ```yaml
+    ac:
+      replicaCount: 2 
+      ....
+      autoscaling:
+        enabled: true  
+        minReplicas: 2
+        maxReplicas: 4
+        targetCPUUtilizationPercentage: 60   <----change to 20
+    ```
+      
+> 💡 **NOTE**  
+> Push the changes & sync ArgoCD.
+
+Now go to the Redhat Openshift Console and observe the number of pods for the `asi` and `ac` Sterling componets. 
+
+  - If a pod starts using more than 20% of the allocated CPU the autoscaler is going to spin up a new pod
     
-        ![verion](images/asi-aci-new-pods.png "Screenshot of asi-aci-new-pods")
-    - Next, If we look at the cluster, you will see the new asi and ac autoscaler.
+      ![verion](images/scaleup.png "Screenshot of version")
+  
+  - Next, go to the Openshift console and on the left go to the drop down and search under HorizontalPodAutoscaler, you will see the new `asi` and `ac` autoscalers.
 
-        ![verion](images/scaleup.png "Screenshot of version")
-        
-    - Next option, Let say we want to change the targetCPUUtilizationPercentage: 20
-    - Openshift will spin up another pod to the max of 4.
-    - If we look at the cluster new pods are been spined up to the max of 4 
-
-
- 
