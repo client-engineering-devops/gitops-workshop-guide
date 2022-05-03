@@ -45,8 +45,17 @@ Now go update the `values.yaml` file in your repo as follows:
         repository: cp.icr.io/cp/ibm-sfg/sfg
         tag: 6.1.0.0          <--- change to 6.1.0.1       
     ```
-_  💡 **NOTE**  
-> Push the changes & sync ArgoCD.
+
+Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
+```bash
+# Verify the changes by with the following command.
+git diff
+
+# Finally commit and push the changes
+git commit -s -am "update to version 6.1.0.1"
+git push
+```
+Sync the changes in Argo  via the `service` argo application
 
 Argocd will detect these changes and create a new pod with the latest version.
 
@@ -96,9 +105,17 @@ Before we change the settings to simulate the load,  we will increse the relicca
         targetCPUUtilizationPercentage: 60
     ```
       
-> 💡 **NOTE**  
-> Push the changes & sync ArgoCD.
+Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
+```bash
+# Verify the changes by with the following command.
+git diff
 
+# Finally commit and push the changes
+git commit -s -am "increase replicas and enable auto scaling"
+git push
+```
+
+Sync the changes in Argo  via the `service` argo application
 
 Now, to simulate a load on the system so that we trigger the auto scaling of pods, we will lower the target CPU utiliziation by modifying the `values.yaml` file in GitOps repo.    Follow the steps below:
 - Step 1:
@@ -128,8 +145,17 @@ Now, to simulate a load on the system so that we trigger the auto scaling of pod
         targetCPUUtilizationPercentage: 60   <----change to 20
     ```
       
-> 💡 **NOTE**  
-> Push the changes & sync ArgoCD.
+Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
+```bash
+# Verify the changes by with the following command.
+git diff
+
+# Finally commit and push the changes
+git commit -s -am "lower the target CPU utlization to simulate load."
+git push
+```
+
+Sync the changes in Argo via the `service` argo application
 
 Now go to the Redhat Openshift Console and observe the number of pods for the `asi` and `ac` Sterling componets. 
 
