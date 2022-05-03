@@ -271,6 +271,8 @@ git push
 
 Sync the changes in Argo  via the `service` argo application
 
+**Note that the above sync will take approximately 1.5 hours as this part of the deployment generates the initial Sterling B2B Integrator database.**
+
 Now verify the the Sterling File Gateway Console.  Retrieve the Sterling File Gateway console URL.
 ```bash
 oc get route -n tools ibm-sfg-b2bi-sfg-asi-internal-route-filegateway -o template --template='https://{{.spec.host}}'
