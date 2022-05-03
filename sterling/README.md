@@ -54,7 +54,7 @@ ls -l
 
 5. Setup your GitHub profile
 ```bash
-git config -global user.email “you@example.com”
+git config --global user.email “you@example.com”
 git config --global user.name “Your Name”
 ```
 
@@ -83,12 +83,12 @@ In the first section of this lab, you will review the  `Infrastructure` layer in
 
 ### 1. Edit the Infrastructure layer - Kustomization.yaml file
 
-Edit the Infrastructure layer `multi-tenancy-gitops/0-bootstrap/single-cluster/1-infra/kustomization.yaml`, un-comment the following lines, commit and push the changes and synchronize the `infra` Application in the ArgoCD console.
+Edit the Infrastructure layer `~/multi-tenancy-gitops/0-bootstrap/single-cluster/1-infra/kustomization.yaml`, un-comment the following lines, commit and push the changes and synchronize the `infra` Application in the ArgoCD console.
 
 #### Deploy the Kubernetes infrastructure level resources via the kustomization.yaml
 by uncommented the `resources:` as you see below:
 
-`vi multi-tenancy-gitops/single-cluster/1-infra/kustomization.yaml`
+`vi ~/multi-tenancy-gitops/0-bootstrap/single-cluster/1-infra/kustomization.yaml`
 ```Markdown
 resources:
 #- argocd/consolelink.yaml
@@ -143,7 +143,7 @@ Sync the changes in Argo at via the `infra` argo application
 
 Edit the Argo Services layer in the `multi-tenancy-gitops` **repo**  and install Sealed Secrets service by uncommenting the line below: 
 
-`vi multi-tenancy-gitops/single-cluster/2-services/kustomization.yaml`
+`vi ~/multi-tenancy-gitops/0-bootstrap/single-cluster/2-services/kustomization.yaml`
 ```Markdown
 resources:
 
@@ -166,7 +166,7 @@ git push
 
 Now in the `multi-tenancy-gitops-service` **repo**, changed to the  B2B setup directory to generate the sealed secret and the volume storage deployment yaml files.
 ```bash
-cd multi-tenancy-gitops-services/instances/ibm-sfg-b2bi-setup
+cd ~/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi-setup
 ```
 
 #### Generate Sealed Secrets resources required by Sterling File Gateway.  
@@ -197,7 +197,7 @@ The following commands will generate the yaml resource files from a template and
 
 Now edit the Argo Services layer in the `multi-tenancy-gitops` **repo** by  uncommenting the following lines to deployed the sealed secrets and volume storage yamls required for Sterling File Gateway, **commit** and **push** the changes and synchronize the `services` Application in the ArgoCD console.
 
-`vi multi-tenancy-gitops/single-cluster/2-services/kustomization.yaml`
+`vi ~/multi-tenancy-gitops/0-bootstrap/single-cluster/2-services/kustomization.yaml`
 ```Markdown
 resources:
 
@@ -226,7 +226,7 @@ Sync the changes in Argo  via the `service` argo application
 Generate the installation settings in the `multi-tenancy-gitops-services` **repo**  by executing the following commands:
 
 ```bash
-cd multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
+cd ~/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
 ```
 
 ```bash
@@ -247,7 +247,7 @@ git push
 
 Edit the Argo Services layer in the `multi-tenancy-gitops` **repo**  and install the IBM Sterling B2B Integrator Service 
 
-`vi multi-tenancy-gitops/single-cluster/2-services/kustomization.yaml`
+`vi ~/multi-tenancy-gitops/0-bootstrap/single-cluster/2-services/kustomization.yaml`
 ```Markdown
 resources:
 
@@ -288,7 +288,7 @@ In  the `multi-tenancy-gitops-server` **repo**  turn off the database generation
 cd multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
 ```
 
-`vi multi-tenancy-gitops-services/instances/ibm-sfg-b2bi/value.yaml`
+`vi ~/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi/value.yaml`
 ```yaml
 dataSetup:
     enable: false

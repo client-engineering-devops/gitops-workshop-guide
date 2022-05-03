@@ -35,7 +35,7 @@ Now go update the `values.yaml` file in your repo as follows:
 
 - Step 1:
     ```bash
-    cd multi-tenancy-gitops-services/instances/ibm-sfg-b2bi/
+    cd ~/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
     ```
 - Step 2: Inside `values.yaml`, find & set the tag from `6.1.0.0` to `6.1.0.1`
     ```yaml
@@ -80,7 +80,7 @@ Before we change the settings to simulate the load,  we will increse the relicca
 
   - Step 1:
     ```bash
-    cd multi-tenancy-gitops-services/instances/ibm-sfg-b2bi/
+    cd ~/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
     ```
   - Step 2: Inside `values.yaml`, find & set the `replicaCount` and `enabled` fields for both the `asi` and `ac` Sterling componets:
 
@@ -120,7 +120,7 @@ Sync the changes in Argo  via the `service` argo application
 Now, to simulate a load on the system so that we trigger the auto scaling of pods, we will lower the target CPU utiliziation by modifying the `values.yaml` file in GitOps repo.    Follow the steps below:
 - Step 1:
     ```bash
-    cd multi-tenancy-gitops-services/instances/ibm-sfg-b2bi/
+    cd ~/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
     ```
   - Step 2: Inside `values.yaml`, find & set the `replicaCount` and `enabled` fields for both the `asi` and `ac` Sterling componets:
 
