@@ -161,6 +161,7 @@ git diff
 git commit -s -am "only deploy the sealed secret service"
 git push
 ```
+Sync the changes in Argo via the service argo application
 
 ### 3. Generate Sealed Secrets and  Volume Storage Resources required by Sterling File Gateway
 
@@ -193,6 +194,16 @@ The following commands will generate the yaml resource files from a template and
 ./ibm-b2bi-logs-pv.sh
 ./ibm-b2bi-resources-pv.sh
 ./sterlingtoolkit-pv.sh
+```
+
+ow deploy the generated resources changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
+```bash
+# Verify the changes by with the following command.  You should see new yaml files for the sealed secrets and volume storage yamls
+git diff
+
+# Finally commit and push the changes
+git commit -s -am "deploy resources needed for service"
+git push
 ```
 
 Now edit the Argo Services layer in the `multi-tenancy-gitops` **repo** by  uncommenting the following lines to deployed the sealed secrets and volume storage yamls required for Sterling File Gateway, **commit** and **push** the changes and synchronize the `services` Application in the ArgoCD console.
