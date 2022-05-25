@@ -64,7 +64,7 @@ Log in to your cluster with your IBMid by browsing to the `OpenShift web console
 *Note that the shell session's [IBM Cloud Shell workspace](https://cloud.ibm.com/docs/cloud-shell?topic=cloud-shell-files#file-persistence) is deleted one hour after the shell session is closed.  If you loose the shell workspace, follow the steps above to re-setup the environment.*
 
 7. Create your GitHub [GitHub Personal Access Token](github-pat-steps.md) and save it on your machine.  You will need it later when you push changes to the github repo.  When it ask for your password, you will enter your [GitHub Personal Access Token](github-pat-steps.md).
-![github token]
+![github_token](images/github-token.png "Screenshot of  github token permissions needed for this Lab")
 
 ---
 
