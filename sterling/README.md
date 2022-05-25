@@ -54,7 +54,7 @@ ls -l
 
 5. Setup your GitHub profile
 ```bash
-git config --global user.email “you@example.com”
+git config --global user.email “email@example.com”
 git config --global user.name “Your Name”
 ```
 
@@ -64,6 +64,7 @@ Log in to your cluster with your IBMid by browsing to the `OpenShift web console
 *Note that the shell session's [IBM Cloud Shell workspace](https://cloud.ibm.com/docs/cloud-shell?topic=cloud-shell-files#file-persistence) is deleted one hour after the shell session is closed.  If you loose the shell workspace, follow the steps above to re-setup the environment.*
 
 7. Create your GitHub [GitHub Personal Access Token](github-pat-steps.md) and save it on your machine.  You will need it later when you push changes to the github repo.  When it ask for your password, you will enter your [GitHub Personal Access Token](github-pat-steps.md).
+![github token]
 
 ---
 
@@ -132,7 +133,7 @@ git diff
 
 # Finally commit and push the changes
 git commit -s -am "for now only deploy infrastructure resources"
-git push
+git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops.git
 ```
 
 Sync the changes in Argo at via the `infra` argo application
@@ -159,7 +160,7 @@ git diff
 
 # Finally commit and push the changes
 git commit -s -am "only deploy the sealed secret service"
-git push
+git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops.git
 ```
 Sync the changes in Argo via the service argo application
 
@@ -203,7 +204,7 @@ git diff
 
 # Finally commit and push the changes
 git commit -s -am "deploy resources needed for service"
-git push
+git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops-services.git
 ```
 
 Now edit the Argo Services layer in the `multi-tenancy-gitops` **repo** by  uncommenting the following lines to deployed the sealed secrets and volume storage yamls required for Sterling File Gateway, **commit** and **push** the changes and synchronize the `services` Application in the ArgoCD console.
@@ -226,7 +227,7 @@ git diff
 
 # Finally commit and push the changes
 git commit -s -am "deploy services resources"
-git push
+git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops.git
 ```
 
 Sync the changes in Argo  via the `service` argo application
@@ -251,7 +252,7 @@ git diff
 
 # Finally commit and push the changes
 git commit -s -am "created the deployment settings via the values.yaml"
-git push
+git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops-services.git
 ```
 
 ### 5. Deploy the IBM Sterling B2B Integrator 
@@ -277,7 +278,7 @@ git diff
 
 # Finally commit and push the changes
 git commit -s -am "deploy the IBM Sterling B2B Integrator servcie"
-git push
+git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops.git
 ```
 
 Sync the changes in Argo  via the `service` argo application
@@ -315,7 +316,7 @@ git diff
 
 # Finally commit and push the changes
 git commit -s -am "disable the SFG database generation"
-git push
+git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops-services.git
 ```
 
 Sync the changes in Argo  via the `service` argo application
