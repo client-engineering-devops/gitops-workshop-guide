@@ -53,7 +53,7 @@ git diff
 
 # Finally commit and push the changes
 git commit -s -am "update to version 6.1.0.1"
-git push
+git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops-services.git
 ```
 Sync the changes in Argo  via the `service` argo application
 
@@ -112,7 +112,7 @@ git diff
 
 # Finally commit and push the changes
 git commit -s -am "increase replicas and enable auto scaling"
-git push
+git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops-services.git
 ```
 
 Sync the changes in Argo  via the `service` argo application
@@ -152,7 +152,7 @@ git diff
 
 # Finally commit and push the changes
 git commit -s -am "lower the target CPU utlization to simulate load."
-git push
+git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops-services.git
 ```
 
 Sync the changes in Argo via the `service` argo application
