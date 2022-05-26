@@ -16,7 +16,7 @@ In this workshop you will learn the following:
 -   Lab 2 - Validating Use case Requirements for Self-Healing, Upgrade/Rollback and automatic Pod Scaling.
 
 ## Lab Prerequsites - Client Environment Setup 
-This part of the workshop is a hands-on lab that the instructors will walk you through to deploy an instances of IBM Sterling File Gateway/B2B Integrator.  You and a collegue will be assigned a RedHat OpenShift Environment and GitHub Organization in which to run the lab.  You will need to have your IBMId and Public GitHub ID that you provided to sign up for the lab available.  If you have any issues accessing the environment with you IBMId and GitHub ID, please consult with your lab instructor.
+This part of the workshop is a hands-on lab that the instructors will walk you through to deploy an instances of IBM Sterling File Gateway/B2B Integrator.  You will be assigned a RedHat OpenShift Environment and GitHub Organization in which to run the lab.  You will need to have your IBMId and Public GitHub ID that you provided to sign up for the lab available.  If you have any issues accessing the environment with you IBMId and GitHub ID, please consult with your lab instructor.
 
 ### Environment Assignment 
 You should have received an e-mail from the IBM instructor with your assigned environment access based on your IBMid and GitHub Id. 
@@ -63,8 +63,7 @@ Log in to your cluster with your IBMid by browsing to the `OpenShift web console
 
 *Note that the shell session's [IBM Cloud Shell workspace](https://cloud.ibm.com/docs/cloud-shell?topic=cloud-shell-files#file-persistence) is deleted one hour after the shell session is closed.  If you loose the shell workspace, follow the steps above to re-setup the environment.*
 
-7. Create your GitHub [GitHub Personal Access Token](github-pat-steps.md) and save it on your machine.  You will need it later when you push changes to the github repo.  When it ask for your password, you will enter your [GitHub Personal Access Token](github-pat-steps.md).
-![github_token](images/github-token.png "Screenshot of  github token permissions needed for this Lab")
+7. Create your GitHub Personal Access Token and save it on your machine.  You will need it later when you push changes to the github repo. See the [steps for creating a GitHub Personal Access Token](github-pat-steps.md)
 
 ---
 
