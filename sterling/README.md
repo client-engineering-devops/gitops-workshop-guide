@@ -38,8 +38,11 @@ echo $PATH
 
 3. Setup the environement variables
 ```bash
-export GIT_ORG=#enter name for GitHub organization
-echo $GIT_ORG #To validate that GIT_ORG has the correct value.
+# Your-Github-Org should be the name of the github org that was created for this Lab
+export GIT_ORG=Your-Github-Org
+
+#Validate that GIT_ORG has the correct value.
+echo $GIT_ORG 
 ```
 4. Clone your GitOps repositories from your Github Organization 
 ```bash
@@ -54,7 +57,10 @@ ls -l
 
 5. Setup your GitHub profile
 ```bash
-git config --global user.email "email@example.com"
+# Your e-mail should be the e-mail you used to sign up for github
+git config --global user.email "Your e-mail"
+
+# Your Name should be the name you used to sign up for github
 git config --global user.name "Your Name"
 ```
 
@@ -202,7 +208,7 @@ The following commands will generate the yaml resource files from a template and
 ./sterlingtoolkit-pv.sh
 ```
 
-ow deploy the generated resources changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
+Now deploy the generated resources changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
 ```bash
 # Verify the changes by with the following command.  You should see new yaml files for the sealed secrets and volume storage yamls
 git diff
