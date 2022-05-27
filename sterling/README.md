@@ -69,19 +69,19 @@ Log in to your cluster with your IBMid by browsing to the `OpenShift web console
 
 *Note that the shell session's [IBM Cloud Shell workspace](https://cloud.ibm.com/docs/cloud-shell?topic=cloud-shell-files#file-persistence) is deleted one hour after the shell session is closed.  If you loose the shell workspace, follow the steps above to re-setup the environment.*
 
----
-
-## Lab 1 - Deploy the  IBM Sterling File Gateway/B2B Integrator using IBM's GitOps Recipe
-----
-1. Create your GitHub Personal Access Token and save it on your machine.  You will need it later when you push changes to the github repo. See the [steps for creating a GitHub Personal Access Token](github-pat-steps.md)
-
-2. Lauch and login in to your Argo instance with the credentials provided in the environment e-mail you received from IBM TechZone.
+7. Lauch and login in to your Argo instance with the credentials provided in the environment e-mail you received from IBM TechZone.
 
  ![argocd_login](images/argo-launch-login-page.png "Screenshot of  ArgoCD login page")
 
  and verify the Argo applications 
  
  ![argocd_startpage](images/argo-start-page.png "Screenshot of  ArgoCD start page")
+ 
+---
+
+## Lab 1 - Deploy the  IBM Sterling File Gateway/B2B Integrator using IBM's GitOps Recipe
+----
+1. Create your GitHub Personal Access Token and save it on your machine.  You will need it later when you push changes to the github repo. See the [steps for creating a GitHub Personal Access Token](github-pat-steps.md)
 
 
 ### Deploy the Pre-Requisite Infrastructure Components 
@@ -213,6 +213,9 @@ Now deploy the generated resources changes by committing and pushing the changes
 # Verify the changes by with the following command.  You should see new yaml files for the sealed secrets and volume storage yamls
 git diff
 
+# Need to add the generated yaml files to git staging area
+git add .
+
 # Finally commit and push the changes
 git commit -s -am "deploy resources needed for service"
 
@@ -234,7 +237,7 @@ resources:
 #- argocd/instances/ibm-sfg-b2bi.yaml
 ```
 
-Now deploy the generated resources changes by committing and pushing the changes to your `multi-tenancy-gitops` repository:
+Now deploy the resources changes by committing and pushing the changes to your `multi-tenancy-gitops` repository:
 ```bash
 # Verify the changes by with the following command.  You should see new yaml files for the sealed secrets and volume storage yamls
 git diff
