@@ -40,7 +40,8 @@ echo $PATH
 ```bash
 # Your-Github-Org should be the name of the github org that was created for this Lab
 export GIT_ORG=Your-Github-Org
-
+```
+```
 #Validate that GIT_ORG has the correct value.
 echo $GIT_ORG 
 ```
@@ -59,7 +60,8 @@ ls -l
 ```bash
 # Your e-mail should be the e-mail you used to sign up for github
 git config --global user.email "Your e-mail"
-
+```
+```
 # Your Name should be the name you used to sign up for github
 git config --global user.name "Your Name"
 ```
