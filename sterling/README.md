@@ -250,6 +250,10 @@ resources:
 - argocd/instances/ibm-sfg-mq-prod.yaml
 - argocd/instances/ibm-sfg-b2bi-prod-setup.yaml
 #- argocd/instances/ibm-sfg-b2bi-prod.yaml
+#- argocd/instances/ibm-sfg-db2-nonprod.yaml
+#- argocd/instances/ibm-sfg-mq-nonprod.yaml
+#- argocd/instances/ibm-sfg-b2bi-nonprod-setup.yaml
+#- argocd/instances/ibm-sfg-b2bi-nonprod.yaml
 ```
 
 Now deploy the resources changes by committing and pushing the changes to your `multi-tenancy-gitops` repository:
@@ -313,6 +317,10 @@ resources:
 - argocd/instances/ibm-sfg-mq-prod.yaml
 - argocd/instances/ibm-sfg-b2bi-prod-setup.yaml
 - argocd/instances/ibm-sfg-b2bi-prod.yaml
+#- argocd/instances/ibm-sfg-db2-nonprod.yaml
+#- argocd/instances/ibm-sfg-mq-nonprod.yaml
+#- argocd/instances/ibm-sfg-b2bi-nonprod-setup.yaml
+#- argocd/instances/ibm-sfg-b2bi-nonprod.yaml
 ```
 
 
@@ -343,7 +351,7 @@ oc get route -n tools ibm-sfg-b2bi-sfg-asi-internal-route-filegateway -o templat
 and login with the default credentials:  username:`fg_sysadmin` password: `password` 
 
 
-### 6. Disable the Database Setup BEFORE Lab # 2. 
+### 7. Disable the Database Setup BEFORE Lab # 2. 
 
 **Make Sure to DIASABLE the database generation before the next lab**. 
 
