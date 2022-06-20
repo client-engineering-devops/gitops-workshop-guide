@@ -165,3 +165,159 @@ Now go to the Redhat Openshift Console and observe the number of pods for the `a
   
   - Next, go to the Openshift console and on the left go to the drop down and search under HorizontalPodAutoscaler, you will see the new `asi` and `ac` autoscalers.
 
+---
+
+## 4. Managed File Transfer
+
+In this section of the lab, we see how a trading partner can send a file using managed file transfer with Sterling File Gateway (SFG, part of Sterling B2B Integrator). We will see how, using mailboxes, trading partners can easily send files to/from each other.
+
+Before we can upload a file from a trading partner, we need to setup all the necessary configurations first. We will configure the Partners, Template, and Channel to facilitate the transfer of a test file.
+
+  - Step 1: login to Sterling File Gateway as admin fg_sysadmin (go to https://route-to-asi/filegateway):
+
+    
+      ![Login to File Gateway"](images/sfg-login.png "Login to File Gateway")
+
+
+  - Step 2: create a new routing channel template named Demo_PassThrough with the following configuration:
+
+    
+      ![Menu: Routes -> Template](images/sfg-routes-templates-s1.png "Menu: Routes -> Templates")
+  
+      ![Menu: Routes -> Templates](images/sfg-routes-templates-s2.png "Menu: Routes -> Templates")
+  
+      ![Create New Template](images/sfg-routes-demo_passthrough-s1.png "Create New Template")
+  
+      ![New Template](images/sfg-routes-demo_passthrough-s2.png "New Template")
+  
+      ![New Template](images/sfg-routes-demo_passthrough-s3.png "New Template")
+  
+      ![New Template](images/sfg-routes-demo_passthrough-s3.1.png "New Template")
+  
+      ![New Template](images/sfg-routes-demo_passthrough-s4.png "New Template")
+  
+      ![New Template](images/sfg-routes-demo_passthrough-s4.1.png "New Template")
+  
+      ![New Template](images/sfg-routes-demo_passthrough-s5.png "New Template")
+  
+      ![New Template](images/sfg-routes-demo_passthrough-s5.1.png "New Template")
+  
+      ![New Template](images/sfg-routes-demo_passthrough-s5.2.png "New Template")
+  
+      At the end, the new routing channel template should look as follows:
+
+      ![New Template](images/sfg-routes-demo_passthrough.png "New Template")
+  
+  - Step 3: create the trading partners that will participate in the managed file transfer transaction:
+
+      First, create a new community named Billing where the participants will be a member of (this is required):
+
+      ![Menu: Participants -> Communities](images/sfg-participants-s1.png "Menu: Participants -> Communities")
+
+      ![Add New Community](images/sfg-participants-s2.png "Add New Community")
+
+      ![New Community](images/sfg-participants-s3.png "New Community")
+
+      ![verion](images/sfg-participants-s4.png "New Community")
+
+      ![verion](images/sfg-participants-s5.png "New Community")
+
+      ![verion](images/sfg-participants-s7.png "New Community")
+
+      Now, create the participant partners:
+
+      ![Menu: Participants -> Partners](images/sfg-participants-s8.png "Menu: Participants -> Partners")
+
+      ![Create New Partner](images/sfg-participants-s9.png "Create New Partner")
+
+      First, create the internal partner Demo_BillingSystem that will be receiving the file (the Consumer):
+
+      ![New Partner](images/sfg-participants-s10.png "New Partner")
+
+      ![verion](images/sfg-participants-s11.png "New Partner")
+
+      ![verion](images/sfg-participants-s12.png "New Partner")
+
+      ![verion](images/sfg-participants-s13.png "New Partner")
+
+      ![verion](images/sfg-participants-s14.png "New Partner")
+
+      ![verion](images/sfg-participants-s15.png "New Partner")
+
+      ![verion](images/sfg-participants-s16.png "New Partner")
+
+      Next, create the external partner Demo_DrJohnDoe that will be sending the file (the Producer):
+
+      ![Create New Partner](images/sfg-participants-s17.png "Create New Partner")
+
+      ![New Partner](images/sfg-participants-s18.png "New Partner")
+
+      ![New Partner](images/sfg-participants-s19.png "New Partner")
+
+      ![New Partner](images/sfg-participants-s20.png "New Partner")
+
+      ![New Partner](images/sfg-participants-s21.png "New Partner")
+
+      ![New Partner](images/sfg-participants-s22.png "New Partner")
+
+      ![New Partner](images/sfg-participants-s23.png "New Partner")
+
+      ![New Partner](images/sfg-participants-s24.png "New Partner")
+
+  - Step 4: create the routing the channel between the two trading partners using the channel template created earlier:
+
+      Go to the menu: Routes -> Channels and define the producer and consumer as follows:
+
+      ![Menu: Routes -> Channels](images/sfg-channels-s1.png "Menu: Routes -> Channels")
+
+      ![New Channel](images/sfg-channels-s2.png "New Channel")
+
+      ![New Channel](images/sfg-channels-s3.png "New Channel")
+
+      ![New Channel](images/sfg-channels-s4.png "New Channel")
+
+  - Step 5: login to Sterling My File Gateway as user demo_drjohndoe and upload the test file (go to https://route-to-asi/myfilegateway):
+
+      ![Login to My File Gateway](images/sfg-myfg-producer-s1.png "Login to My File Gateway")
+
+     Copy or create the [test.txt](samples/test.txt) file and upload as follows:
+      
+      ![Upload File](images/sfg-myfg-producer-s2.png "Upload File")
+
+      ![Upload File](images/sfg-myfg-producer-s3.png "Upload File")
+
+      ![Upload File](images/sfg-myfg-producer-s4.png "Upload File")
+
+  - Step 6: as an admin, check if the file routed successfully from producer to consumer, by logging in to Sterling File Gateway as fg_sysadmin (go to https://route-to-asi/filegateway):
+
+      ![Login to File Gateway"](images/sfg-login.png "Login to File Gateway")
+
+      ![Activity Find](images/sfg-file-admin-s1.png "Activity Find")
+
+      ![Activity Find](images/sfg-file-admin-s2.png "Activity Find")
+
+      ![Activity Find](images/sfg-file-admin-s3.png "Activity Find")
+
+      ![Activity Find](images/sfg-file-admin-s4.png "Activity Find")
+
+      ![Activity Find](images/sfg-file-admin-s5.png "Activity Find")
+
+  - Step 7: login to Sterling My File Gateway as user demo_billingsystem and open the received test file (go to https://route-to-asi/myfilegateway):
+
+      ![Login to My File Gateway](images/sfg-myfg-consumer-s1.png "Login to My File Gateway")
+
+      ![File Activity](images/sfg-myfg-consumer-s2.png "File Activity")
+
+      ![File Activity](images/sfg-myfg-consumer-s3.png "File Activity")
+
+      ![File Activity](images/sfg-myfg-consumer-s4.png "File Activity")
+
+      ![File Activity](images/sfg-myfg-consumer-s5.png "File Activity")
+
+      ![File Activity](images/sfg-myfg-consumer-s6.png "File Activity")
+
+      ![File Activity](images/sfg-myfg-consumer-s7.png "File Activity")
+
+      ![File Activity](images/sfg-myfg-consumer-s8.png "File Activity")
+
+

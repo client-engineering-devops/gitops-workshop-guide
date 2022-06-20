@@ -1,0 +1,6 @@
+Dear Billing System,
+
+I'm a SFG test file.
+
+Sincerely,
+Dr. John Doe
