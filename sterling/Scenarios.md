@@ -186,12 +186,12 @@ ___
       ![Menu: Routes -> Template](images/sfg-routes-templates-s1.png "Menu: Routes -> Templates")
  &ensp;
 
-    - **Click on the Create button on the bottom right**
+    - **Click on the Create button on the bottom left**
 
       ![Menu: Routes -> Templates](images/sfg-routes-templates-s2.png "Menu: Routes -> Templates")
  &ensp;
 
-    - **Create and configure the new Template as follows**
+    - **Create and configure the new Template as follows (follow the prompts and instructions on Sterling File Gateway, then click on the Next button on the bottom right to proceed to the next step)**
 
       ![Create New Template](images/sfg-routes-demo_passthrough-s1.png "Create New Template")
  &ensp;
@@ -224,7 +224,7 @@ ___
 
       ![New Template](images/sfg-routes-demo_passthrough.png "New Template")
   
-  - **Step 3: create the trading partners that will participate in the managed file transfer transaction:**
+  - **Step 3: create the trading partners that will participate in the managed file transfer transaction**
 
     - **First, create a new Community named Billing where the trading partner participants will be members of**
 
@@ -265,7 +265,7 @@ ___
       ![Create New Partner](images/sfg-participants-s9.png "Create New Partner")
  &ensp;
 
-    - **First, create and configure the internal partner Demo_BillingSystem that will be receiving the file (the Consumer)**
+    - **First, create and configure the internal partner Demo_BillingSystem that will be receiving the file (the Consumer with User Name: demo_billingsystem and Password: password)**
 
       ![New Partner](images/sfg-participants-s10.png "New Partner")
  &ensp;
@@ -290,7 +290,7 @@ ___
       ![verion](images/sfg-participants-s16.png "New Partner")
  &ensp;
 
-    - **Next, create and configure the external partner Demo_DrJohnDoe that will be sending the file (the Producer)**
+    - **Next, create and configure the external partner Demo_DrJohnDoe that will be sending the file (the Producer with User Name: demo_drjohndoe and Password: password)**
 
       ![Create New Partner](images/sfg-participants-s17.png "Create New Partner")
  &ensp;
@@ -325,12 +325,12 @@ ___
       ![Menu: Routes -> Channels](images/sfg-channels-s1.png "Menu: Routes -> Channels")
  &ensp;
 
-    - **Click on the Create button**
+    - **Click on the Create button at the bottom right**
 
       ![New Channel](images/sfg-channels-s2.png "New Channel")
  &ensp;
 
-    - **Select the Routing Channel Template we just created (Demo_PassThrough), the Producer (Demo_DrJohnDoe) and the Consumer (Demo_BillingSystem)**
+    - **Select the Routing Channel Template we just created (Demo_PassThrough), and also the Producer (Demo_DrJohnDoe) and the Consumer (Demo_BillingSystem)**
 
       ![New Channel](images/sfg-channels-s3.png "New Channel")
  &ensp;
