@@ -173,151 +173,246 @@ In this section of the lab, we see how a trading partner can send a file using m
 
 Before we can upload a file from a trading partner, we need to setup all the necessary configurations first. We will configure the Partners, Template, and Channel to facilitate the transfer of a test file.
 
-  - Step 1: login to Sterling File Gateway as admin fg_sysadmin (go to https://route-to-asi/filegateway):
+  - **Step 1: login to Sterling File Gateway as admin fg_sysadmin (go to https://route-to-asi/filegateway)**
 
     
       ![Login to File Gateway"](images/sfg-login.png "Login to File Gateway")
+___
 
+  - **Step 2: create a new routing channel Template named Demo_PassThrough**
 
-  - Step 2: create a new routing channel template named Demo_PassThrough with the following configuration:
+    - **Click on the menu item: Routes -> Teamplates**
 
-    
       ![Menu: Routes -> Template](images/sfg-routes-templates-s1.png "Menu: Routes -> Templates")
-  
+ &ensp;
+
+    - **Click on the Create button on the bottom right**
+
       ![Menu: Routes -> Templates](images/sfg-routes-templates-s2.png "Menu: Routes -> Templates")
-  
+ &ensp;
+
+    - **Create and configure the new Template as follows**
+
       ![Create New Template](images/sfg-routes-demo_passthrough-s1.png "Create New Template")
-  
+ &ensp;
+
       ![New Template](images/sfg-routes-demo_passthrough-s2.png "New Template")
-  
+ &ensp;
+
       ![New Template](images/sfg-routes-demo_passthrough-s3.png "New Template")
-  
+ &ensp;
+
       ![New Template](images/sfg-routes-demo_passthrough-s3.1.png "New Template")
-  
+ &ensp;
+
       ![New Template](images/sfg-routes-demo_passthrough-s4.png "New Template")
-  
+ &ensp;
+
       ![New Template](images/sfg-routes-demo_passthrough-s4.1.png "New Template")
-  
+ &ensp;
+
       ![New Template](images/sfg-routes-demo_passthrough-s5.png "New Template")
-  
+ &ensp;
+
       ![New Template](images/sfg-routes-demo_passthrough-s5.1.png "New Template")
-  
+ &ensp;
+
       ![New Template](images/sfg-routes-demo_passthrough-s5.2.png "New Template")
+ &ensp;
   
-      At the end, the new routing channel template should look as follows:
+    - **At the end, the new routing channel Template should look as follows**
 
       ![New Template](images/sfg-routes-demo_passthrough.png "New Template")
   
-  - Step 3: create the trading partners that will participate in the managed file transfer transaction:
+  - **Step 3: create the trading partners that will participate in the managed file transfer transaction:**
 
-      First, create a new community named Billing where the participants will be a member of (this is required):
+    - **First, create a new Community named Billing where the trading partner participants will be members of**
+
+    - **Click on the menu item: Participants -> Communities**
 
       ![Menu: Participants -> Communities](images/sfg-participants-s1.png "Menu: Participants -> Communities")
+ &ensp;
+
+    - **Click on Add**
 
       ![Add New Community](images/sfg-participants-s2.png "Add New Community")
+ &ensp;
+    - **Create and configure the new Community as follows**
 
       ![New Community](images/sfg-participants-s3.png "New Community")
+ &ensp;
 
       ![verion](images/sfg-participants-s4.png "New Community")
+ &ensp;
 
       ![verion](images/sfg-participants-s5.png "New Community")
+ &ensp;
+
+    - **At the end, the new Community should look as follows**
 
       ![verion](images/sfg-participants-s7.png "New Community")
+ &ensp;
 
-      Now, create the participant partners:
+    - **Now, create the participant Partners**
+
+    - **Click on the menu item: Participants -> Partners**
 
       ![Menu: Participants -> Partners](images/sfg-participants-s8.png "Menu: Participants -> Partners")
+ &ensp;
+
+    - **Click on the Create button**
 
       ![Create New Partner](images/sfg-participants-s9.png "Create New Partner")
+ &ensp;
 
-      First, create the internal partner Demo_BillingSystem that will be receiving the file (the Consumer):
+    - **First, create and configure the internal partner Demo_BillingSystem that will be receiving the file (the Consumer)**
 
       ![New Partner](images/sfg-participants-s10.png "New Partner")
+ &ensp;
 
       ![verion](images/sfg-participants-s11.png "New Partner")
+ &ensp;
 
       ![verion](images/sfg-participants-s12.png "New Partner")
+ &ensp;
 
       ![verion](images/sfg-participants-s13.png "New Partner")
+ &ensp;
 
       ![verion](images/sfg-participants-s14.png "New Partner")
+ &ensp;
 
       ![verion](images/sfg-participants-s15.png "New Partner")
+ &ensp;
+
+    - **At the end, the new trading partner Demo_BillingSystem should look as follows, then click on Finish to add it**
 
       ![verion](images/sfg-participants-s16.png "New Partner")
+ &ensp;
 
-      Next, create the external partner Demo_DrJohnDoe that will be sending the file (the Producer):
+    - **Next, create and configure the external partner Demo_DrJohnDoe that will be sending the file (the Producer)**
 
       ![Create New Partner](images/sfg-participants-s17.png "Create New Partner")
+ &ensp;
 
       ![New Partner](images/sfg-participants-s18.png "New Partner")
+ &ensp;
 
       ![New Partner](images/sfg-participants-s19.png "New Partner")
+ &ensp;
 
       ![New Partner](images/sfg-participants-s20.png "New Partner")
+ &ensp;
 
       ![New Partner](images/sfg-participants-s21.png "New Partner")
+ &ensp;
 
       ![New Partner](images/sfg-participants-s22.png "New Partner")
+ &ensp;
+
+    - **At the end, the new trading partner Demo_DrJohnDoe should look as follows, then click on Finish to add it**
 
       ![New Partner](images/sfg-participants-s23.png "New Partner")
+ &ensp;
 
       ![New Partner](images/sfg-participants-s24.png "New Partner")
+ &ensp;
 
-  - Step 4: create the routing the channel between the two trading partners using the channel template created earlier:
+  - **Step 4: create the routing the channel between the two trading partners using the channel template created earlier**
 
-      Go to the menu: Routes -> Channels and define the producer and consumer as follows:
+    - **Click on the menu item: Routes -> Channels and define the producer and consumer as follows**
 
       ![Menu: Routes -> Channels](images/sfg-channels-s1.png "Menu: Routes -> Channels")
+ &ensp;
+
+    - **Click on the Create button**
 
       ![New Channel](images/sfg-channels-s2.png "New Channel")
+ &ensp;
+
+    - **Select the Routing Channel Template we just created (Demo_PassThrough), the Producer (Demo_DrJohnDoe) and the Consumer (Demo_BillingSystem)**
 
       ![New Channel](images/sfg-channels-s3.png "New Channel")
+ &ensp;
+
+    - **The new routing channel should look as follows**
 
       ![New Channel](images/sfg-channels-s4.png "New Channel")
+ &ensp;
 
-  - Step 5: login to Sterling My File Gateway as user demo_drjohndoe and upload the test file (go to https://route-to-asi/myfilegateway):
+  - **Step 5: login to Sterling My File Gateway as user demo_drjohndoe and upload the test file (go to https://route-to-asi/myfilegateway)**
 
       ![Login to My File Gateway](images/sfg-myfg-producer-s1.png "Login to My File Gateway")
+ &ensp;
 
-     Copy or create the [test.txt](samples/test.txt) file and upload as follows:
+    - **Copy or create the [test.txt](samples/test.txt) file and upload as follows (set Mailbox Path: /)**
       
       ![Upload File](images/sfg-myfg-producer-s2.png "Upload File")
+ &ensp;
+
+    - **Wait for the file to upload and process successfully**
 
       ![Upload File](images/sfg-myfg-producer-s3.png "Upload File")
+ &ensp;
 
       ![Upload File](images/sfg-myfg-producer-s4.png "Upload File")
+ &ensp;
 
-  - Step 6: as an admin, check if the file routed successfully from producer to consumer, by logging in to Sterling File Gateway as fg_sysadmin (go to https://route-to-asi/filegateway):
+  - **Step 6: as an Admin, check if the file routed successfully from producer (Demo_DrJohnDoe) to consumer (Demo_BillingSystem), by logging in to Sterling File Gateway as fg_sysadmin (go to https://route-to-asi/filegateway)**
 
       ![Login to File Gateway"](images/sfg-login.png "Login to File Gateway")
+ &ensp;
+
+    - **Click on the Find button on the top right hand side to search for the test.txt file transfer**
 
       ![Activity Find](images/sfg-file-admin-s1.png "Activity Find")
+ &ensp;
+
+    - **You should see the test.txt file transfer completed successfully**
 
       ![Activity Find](images/sfg-file-admin-s2.png "Activity Find")
+ &ensp;
+
+    - **You can click on the completed test.txt file transfer to get details of the Arrived File Events**
 
       ![Activity Find](images/sfg-file-admin-s3.png "Activity Find")
+ &ensp;
 
       ![Activity Find](images/sfg-file-admin-s4.png "Activity Find")
+ &ensp;
 
       ![Activity Find](images/sfg-file-admin-s5.png "Activity Find")
+ &ensp;
 
-  - Step 7: login to Sterling My File Gateway as user demo_billingsystem and open the received test file (go to https://route-to-asi/myfilegateway):
+  - **Step 7: finally, login to Sterling My File Gateway as user demo_billingsystem and open the received test file (go to https://route-to-asi/myfilegateway)**
 
       ![Login to My File Gateway](images/sfg-myfg-consumer-s1.png "Login to My File Gateway")
+ &ensp;
 
-      ![File Activity](images/sfg-myfg-consumer-s2.png "File Activity")
+    - **Click on the Find button on the top right had side**
 
       ![File Activity](images/sfg-myfg-consumer-s3.png "File Activity")
+ &ensp;
+
+    - **You should see a new Arrived File test.txt routed successfully**
+
+      ![File Activity](images/sfg-myfg-consumer-s2.png "File Activity")
+ &ensp;
+
+    - **Click on the Route tab to get details of the Route Events**
 
       ![File Activity](images/sfg-myfg-consumer-s4.png "File Activity")
+ &ensp;
+
+    - **Click on the Delivery tab to get details of the Delivery Events**
 
       ![File Activity](images/sfg-myfg-consumer-s5.png "File Activity")
+ &ensp;
 
-      ![File Activity](images/sfg-myfg-consumer-s6.png "File Activity")
+    - **Then, click on the Download Files tab at the top to download and see the test.txt file**
 
       ![File Activity](images/sfg-myfg-consumer-s7.png "File Activity")
+ &ensp;
 
       ![File Activity](images/sfg-myfg-consumer-s8.png "File Activity")
-
-
+ &ensp;
