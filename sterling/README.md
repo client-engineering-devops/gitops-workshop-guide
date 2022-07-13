@@ -16,14 +16,16 @@ In this workshop you will learn the following:
 -   Lab 2 - Validating Use case Requirements for Self-Healing, Upgrade/Rollback and automatic Pod Scaling.
 
 ## Lab Prerequsites - Client Environment Setup 
-This part of the workshop is a hands-on lab that the instructors will walk you through to deploy an instances of IBM Sterling File Gateway/B2B Integrator.  You will be assigned a RedHat OpenShift Environment and GitHub Organization in which to run the lab.  You will need to have your IBMId and Public GitHub ID that you provided to sign up for the lab available.  If you have any issues accessing the environment with you IBMId and GitHub ID, please consult with your lab instructor.
+This part of the workshop is a hands-on lab that the instructors will walk you through to deploy an instances of IBM Sterling File Gateway/B2B Integrator.  You will be assigned a RedHat OpenShift Environment and GitHub Organization in which to run the lab.  You will need to have your IBM Cloud ID and Public GitHub ID, that you provided to sign up for the lab, available.  If you have any issues accessing the environment with your IBM ID and GitHub ID, please consult with your lab instructor.
 
-### Environment Assignment 
-You should have received an e-mail from the IBM instructor with your assigned environment access based on your IBMid and GitHub Id. 
+### Environment Assignment
+You should have received an e-mail from the IBM instructor with your assigned environment access based on your IBM ID and GitHub ID. 
 
 ### Login and Setup the IBM Cloud Shell Environment
 
-1. Access IBM Cloud shell and login to the [IBM Cloud Shell](https://cloud.ibm.com/shell)
+1. Login to your IBM Cloud account and access the [IBM Cloud Shell](https://cloud.ibm.com/shell)
+
+*Note that the shell session's [IBM Cloud Shell workspace](https://cloud.ibm.com/docs/cloud-shell?topic=cloud-shell-files#file-persistence) is deleted one hour after the shell session is closed.  If you loose the shell workspace, follow the steps above to re-setup the environment.*
 
 2. Install and setup the prequiste CLIs 
 ```bash
@@ -66,10 +68,11 @@ git config --global user.email "Your e-mail"
 git config --global user.name "Your Name"
 ```
 
-6. Login to the RedHat Openshift Cluster
-Log in to your cluster with your IBMid by browsing to the `OpenShift web console` (*see your environment assignment e-mail for the link to your ROKS Cluster URL*). From the dropdown menu in the upper right of the page, click Copy Login Command.  Paste the copied command in your IBM Cloud shell.
+6. Launch the `OpenShift Web Console`. From the dropdown menu in the upper right of the page, click Copy Login Command.  Paste the copied command in your IBM Cloud shell.
 
-*Note that the shell session's [IBM Cloud Shell workspace](https://cloud.ibm.com/docs/cloud-shell?topic=cloud-shell-files#file-persistence) is deleted one hour after the shell session is closed.  If you loose the shell workspace, follow the steps above to re-setup the environment.*
+![openshift_web_console](images/openshift-web-console.png "Screenshot of Openshift Web Console")
+
+]
 
 7. Lauch and login in to your Argo instance with the credentials provided in the environment e-mail you received from IBM TechZone.
 
