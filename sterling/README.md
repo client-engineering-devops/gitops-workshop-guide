@@ -160,6 +160,8 @@ resources:
 #- argocd/serviceaccounts-b2bi-nonprod.yaml
 - argocd/sfg-b2bi-clusterwide.yaml
 #- argocd/scc-wkc-iis.yaml
+#- argocd/norootsquash.yaml
+- argocd/daemonset-sync-global-pullsecret.yaml
 #- argocd/storage.yaml
 #- argocd/infraconfig.yaml
 #- argocd/machinesets.yaml
