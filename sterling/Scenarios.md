@@ -35,7 +35,7 @@ Now go update the `values.yaml` file in your repo as follows:
 
 - Step 1:
     ```bash
-    cd ~/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
+    cd ~/$GIT_ORG/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
     ```
 - Step 2: Inside `values.yaml`, find & set the tag from `6.1.0.0` to `6.1.0.1`
     ```yaml
@@ -48,12 +48,18 @@ Now go update the `values.yaml` file in your repo as follows:
 
 Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
 ```bash
-# Verify the changes by with the following command.
-git diff
+#change to the `multi-tenancy-gitops-services` directory
+cd ~/$GIT_ORG/multi-tenancy-gitops-services
 
+# Verify the changes, and add the files that have been changed
+git status
+git add -u
+ 
 # Finally commit and push the changes
-git commit -s -am "update to version 6.1.0.1"
-git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops-services.git
+git commit -m "update to version 6.1.0.1"
+git push
+# Input your github username when prompted for Username
+# Input the Github Token that you had created earlier when prompted for Password
 ```
 Sync the changes in Argo  via the `service` argo application
 
@@ -80,7 +86,7 @@ Before we change the settings to simulate the load,  we will increse the relicca
 
   - Step 1:
     ```bash
-    cd ~/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
+    cd ~/$GIT_ORG/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
     ```
   - Step 2: Inside `values.yaml`, find & set the `replicaCount` and `enabled` fields for both the `asi` and `ac` Sterling componets:
 
@@ -107,12 +113,18 @@ Before we change the settings to simulate the load,  we will increse the relicca
       
 Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
 ```bash
-# Verify the changes by with the following command.
-git diff
+#change to the `multi-tenancy-gitops-services` directory
+cd ~/$GIT_ORG/multi-tenancy-gitops-services
 
+# Verify the changes, and add the files that have been changed
+git status
+git add -u
+ 
 # Finally commit and push the changes
-git commit -s -am "increase replicas and enable auto scaling"
-git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops-services.git
+git commit -m "increase replicas and enable auto scaling"
+git push
+# Input your github username when prompted for Username
+# Input the Github Token that you had created earlier when prompted for Password
 ```
 
 Sync the changes in Argo  via the `service` argo application
@@ -120,7 +132,7 @@ Sync the changes in Argo  via the `service` argo application
 Now, to simulate a load on the system so that we trigger the auto scaling of pods, we will lower the target CPU utiliziation by modifying the `values.yaml` file in GitOps repo.    Follow the steps below:
 - Step 1:
     ```bash
-    cd ~/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
+    cd ~/$GIT_ORG/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi
     ```
   - Step 2: Inside `values.yaml`, find & set the `replicaCount` and `enabled` fields for both the `asi` and `ac` Sterling componets:
 
@@ -147,12 +159,18 @@ Now, to simulate a load on the system so that we trigger the auto scaling of pod
       
 Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
 ```bash
-# Verify the changes by with the following command.
-git diff
+#change to the `multi-tenancy-gitops-services` directory
+cd ~/$GIT_ORG/multi-tenancy-gitops-services
 
+# Verify the changes, and add the files that have been changed
+git status
+git add -u
+ 
 # Finally commit and push the changes
-git commit -s -am "lower the target CPU utlization to simulate load."
-git push https://github.com/[your github token]@[your github org name]/multi-tenancy-gitops-services.git
+git commit -m "lower the target CPU utlization to simulate load."
+git push
+# Input your github username when prompted for Username
+# Input the Github Token that you had created earlier when prompted for Password
 ```
 
 Sync the changes in Argo via the `service` argo application
