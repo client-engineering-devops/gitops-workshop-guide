@@ -10,7 +10,7 @@ vi ~/$GIT_ORG/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi-prod/values.y
 ibm-sfg-prod:
 ....
   dataSetup:
-    enabled: true          <--- change to false
+    enabled: true           <--- change to false
     upgrade: false
   env:
     tz: "UTC"
@@ -22,7 +22,7 @@ ibm-sfg-prod:
     #setup.cfg configuration starts here. Property names must follow camelCase format.
   setupCfg:
     ....
-    dbCreateSchema: true   <--- change to false 
+    dbCreateSchema: true    <--- change to false 
 ```
 
 Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
@@ -94,7 +94,7 @@ Now go update the `values.yaml` file in your repo as follows:
     global:
       image:
         repository: cp.icr.io/cp/ibm-sfg/sfg
-        tag: 6.1.0.0          <--- change to 6.1.0.1       
+        tag: 6.1.0.0                           <--- change to 6.1.0.1       
     ```
 
 Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
@@ -142,24 +142,28 @@ Before we change the settings to simulate the load,  we will increse the relicca
   - Step 2: Inside `values.yaml`, find & set the `replicaCount` and `enabled` fields for both the `asi` and `ac` Sterling componets:
 
     ```yaml
-    asi:
-      replicaCount: 1   <--- change to 2
+    ibm-sfg-prod:
       ....
-      autoscaling:
-        enabled: false  <----change to true
-        minReplicas: 2
-        maxReplicas: 4
-        targetCPUUtilizationPercentage: 60
+      asi:
+        replicaCount: 1     <--- change to 2
+        ....
+        autoscaling:
+          enabled: false    <----change to true
+          minReplicas: 2
+          maxReplicas: 4
+          targetCPUUtilizationPercentage: 60
     ```
     ```yaml
-    ac:
-      replicaCount: 1   <--- change to 2
+    ibm-sfg-prod:
       ....
-      autoscaling:
-        enabled: false  <----change to true
-        minReplicas: 2
-        maxReplicas: 4
-        targetCPUUtilizationPercentage: 60
+      ac:
+        replicaCount: 1     <--- change to 2
+        ....
+        autoscaling:
+          enabled: false    <----change to true
+          minReplicas: 2
+          maxReplicas: 4
+          targetCPUUtilizationPercentage: 60
     ```
       
 Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
@@ -188,24 +192,28 @@ Now, to simulate a load on the system so that we trigger the auto scaling of pod
   - Step 2: Inside `values.yaml`, find & set the `replicaCount` and `enabled` fields for both the `asi` and `ac` Sterling componets:
 
     ```yaml
-    asi:
-      replicaCount: 2   
+    ibm-sfg-prod:
       ....
-      autoscaling:
-        enabled: true  
-        minReplicas: 2
-        maxReplicas: 4
-        targetCPUUtilizationPercentage: 60  <----change to 20
+      asi:
+        replicaCount: 2   
+        ....
+        autoscaling:
+          enabled: true  
+          minReplicas: 2
+          maxReplicas: 4
+          targetCPUUtilizationPercentage: 60    <----change to 20
     ```
     ```yaml
-    ac:
-      replicaCount: 2 
+    ibm-sfg-prod:
       ....
-      autoscaling:
-        enabled: true  
-        minReplicas: 2
-        maxReplicas: 4
-        targetCPUUtilizationPercentage: 60   <----change to 20
+      ac:
+        replicaCount: 2 
+        ....
+        autoscaling:
+          enabled: true  
+          minReplicas: 2
+          maxReplicas: 4
+          targetCPUUtilizationPercentage: 60    <----change to 20
     ```
       
 Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
