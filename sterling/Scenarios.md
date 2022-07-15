@@ -1,4 +1,4 @@
-### Need to Disable the Database Setup before the running through the first 3 use cases. 
+### Need to Disable the Database Setup before the running through the use cases 2 & 3. 
 
 In  the `multi-tenancy-gitops-server` **repo**  turn off the database generation by editing the properties overide file `values.yaml` for the IBM Sterling B2B Integrator Service.  Execute the following:
 
@@ -22,7 +22,7 @@ ibm-sfg-prod:
     #setup.cfg configuration starts here. Property names must follow camelCase format.
   setupCfg:
     ....
-    dbCreateSchema: true    <--- change to false 
+    dbCreateSchema: true    <----change to false 
 ```
 
 Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
@@ -80,7 +80,7 @@ Using the GitOps method we see how the upgrade process is shorten.  We are also 
 
 To upgrade the version, first go to the IBM Sterling Console application and check the current version, which is version `6.1.0.0`. 
 
-  ![verion](images/v-1.png "Screenshot of version")
+                            ![verion](images/v-1.png "Screenshot of version")
 
 Now go update the `values.yaml` file in your repo as follows:
 
@@ -94,7 +94,7 @@ Now go update the `values.yaml` file in your repo as follows:
     global:
       image:
         repository: cp.icr.io/cp/ibm-sfg/sfg
-        tag: 6.1.0.0                           <--- change to 6.1.0.1       
+        tag: 6.1.0.0                           <----change to 6.1.0.1       
     ```
 
 Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
@@ -121,8 +121,8 @@ Argocd will detect these changes and create a new pod with the latest version.
   ![verion](images/pods-version2.png "Screenshot of version")       
 
 
-To verify the version, simply go to the Sterling app menu and click on the support button in the Sterling Console.   
-  ![verion](images/newerversion.png "Screenshot of version") 
+**To verify the version, simply go to the Sterling app menu and click on the support button in the Sterling Console.   
+                            ![verion](images/newerversion.png "Screenshot of version") 
 
 
 ---
