@@ -1,4 +1,55 @@
-# B2Bi Capabilities - Use Case Requirements  
+### Need to Disable the Database Setup before the running through the first 3 use cases. 
+
+In  the `multi-tenancy-gitops-server` **repo**  turn off the database generation by editing the properties overide file `values.yaml` for the IBM Sterling B2B Integrator Service.  Execute the following:
+
+```bash
+vi ~/$GIT_ORG/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi-prod/values.yaml
+```
+
+```yaml
+ibm-sfg-prod:
+....
+  dataSetup:
+    enabled: true          <--- change to false
+    upgrade: false
+  env:
+    tz: "UTC"
+    license: "accept"
+    upgradeCompatibilityVerified: false
+  logs:
+    # true if user wish to redirect the application logs to console else false. If provided value is true , then application logs will reside inside containers. No volume mapping will be used.
+    enableAppLogOnConsole: false
+    #setup.cfg configuration starts here. Property names must follow camelCase format.
+  setupCfg:
+    ....
+    dbCreateSchema: true   <--- change to false 
+```
+
+Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
+```bash
+#change to the `multi-tenancy-gitops-services` directory
+cd ~/$GIT_ORG/multi-tenancy-gitops-services
+
+# Verify the changes, and add the files that have been changed
+git status
+git add -u
+
+# Finally commit and push the changes
+git commit -s -am "disable the SFG database generation"
+git push
+# Input your github username when prompted for Username
+# Input the Github Token that you had created earlier when prompted for Password
+```
+
+Sync the changes in Argo  via the `service` argo application
+
+Now verify the the Sterling File Gateway Console.  Retrieve the Sterling File Gateway console URL.
+```bash
+oc get route -n tools ibm-sfg-b2bi-sfg-asi-internal-route-filegateway -o template --template='https://{{.spec.host}}'
+```
+and login with the default credentials:  username:`fg_sysadmin` password: `password` 
+
+# B2Bi Capabilities - Use Case walkthrough
 
 ## 1. Self-healing
 

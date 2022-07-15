@@ -379,45 +379,6 @@ oc get route -n tools ibm-sfg-b2bi-sfg-asi-internal-route-filegateway -o templat
 and login with the default credentials:  username:`fg_sysadmin` password: `password` 
 
 
-### 7. Disable the Database Setup BEFORE Lab # 2. 
-
-**Make Sure to DIASABLE the database generation before the next lab**. 
-
-In  the `multi-tenancy-gitops-server` **repo**  turn off the database generation by editing the properties overide file `values.yaml` for the IBM Sterling B2B Integrator Service.  Execute the following:
-
-```bash
-vi ~/$GIT_ORG/multi-tenancy-gitops-services/instances/ibm-sfg-b2bi-prod/values.yaml
-```
-
-```yaml
-dataSetup:
-    enable: false
-dbCreateSchema: false
-```
-
-Now deploy the changes by committing and pushing the changes to your `multi-tenancy-gitops-services` repository:
-```bash
-#change to the `multi-tenancy-gitops-services` directory
-cd ~/$GIT_ORG/multi-tenancy-gitops-services
-
-# Verify the changes, and add the files that have been changed
-git status
-git add -u
-
-# Finally commit and push the changes
-git commit -s -am "disable the SFG database generation"
-git push
-# Input your github username when prompted for Username
-# Input the Github Token that you had created earlier when prompted for Password
-```
-
-Sync the changes in Argo  via the `service` argo application
-
-Now verify the the Sterling File Gateway Console.  Retrieve the Sterling File Gateway console URL.
-```bash
-oc get route -n tools ibm-sfg-b2bi-sfg-asi-internal-route-filegateway -o template --template='https://{{.spec.host}}'
-```
-and login with the default credentials:  username:`fg_sysadmin` password: `password` 
 
 ___
 
