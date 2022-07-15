@@ -258,7 +258,7 @@ ___
 
   - **Step 2: create a new routing channel Template named Demo_PassThrough**
 
-    - **Click on the menu item: Routes -> Teamplates**
+    - **Click on the menu item: Routes -> Templates**
 
       ![Menu: Routes -> Template](images/sfg-routes-templates-s1.png "Menu: Routes -> Templates")
  &ensp;
