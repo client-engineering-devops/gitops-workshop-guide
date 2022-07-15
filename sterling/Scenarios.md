@@ -79,8 +79,7 @@ In this section of the lab, we see how you can upgrade and roll back versions us
 Using the GitOps method we see how the upgrade process is shorten.  We are also able to roll back to previous version if there is an issue.  The GitOps method also provides for traceability as to when and who made the change in the commit record in GitHub.
 
 To upgrade the version, first go to the IBM Sterling Console application and check the current version, which is version `6.1.0.0`. 
-
-                            ![verion](images/v-1.png "Screenshot of version")
+![verion](images/v-1.png "Screenshot of version")
 
 Now go update the `values.yaml` file in your repo as follows:
 
@@ -121,8 +120,8 @@ Argocd will detect these changes and create a new pod with the latest version.
   ![verion](images/pods-version2.png "Screenshot of version")       
 
 
-**To verify the version, simply go to the Sterling app menu and click on the support button in the Sterling Console.   
-                            ![verion](images/newerversion.png "Screenshot of version") 
+**To verify the version, simply go to the Sterling app menu and click on the support button in the Sterling Console.**  
+![verion](images/newerversion.png "Screenshot of version") 
 
 
 ---
