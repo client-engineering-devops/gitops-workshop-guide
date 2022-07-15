@@ -104,7 +104,7 @@ Scroll down and create the new token.
 
 6. The token is displayed only once; make sure you copy it. You will need it multiple times
 during the following steps.
-![github_token](images/github-pat-token.png "Screenshot of  GitHub PAT Token")
+![github_token](images/github-token.png "Screenshot of  GitHub PAT Token")
 
 ---
 
@@ -374,7 +374,7 @@ Sync the changes in Argo  via the `service` argo application
 
 Now verify the the Sterling File Gateway Console.  Retrieve the Sterling File Gateway console URL.
 ```bash
-oc get route -n tools ibm-sfg-b2bi-sfg-asi-internal-route-filegateway -o template --template='https://{{.spec.host}}'
+oc get route -n b2bi-prod ibm-sfg-b2bi-sfg-asi-internal-route-dashboard -o template --template='https://{{.spec.host}}'
 ```
 and login with the default credentials:  username:`fg_sysadmin` password: `password` 
 

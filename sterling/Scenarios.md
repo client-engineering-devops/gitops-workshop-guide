@@ -41,11 +41,11 @@ git push
 # Input the Github Token that you had created earlier when prompted for Password
 ```
 
-Sync the changes in Argo  via the `service` argo application
+Sync the changes in Argo  via the `ibm-sfg-b2bi-prod` argo application
 
 Now verify the the Sterling File Gateway Console.  Retrieve the Sterling File Gateway console URL.
 ```bash
-oc get route -n tools ibm-sfg-b2bi-sfg-asi-internal-route-filegateway -o template --template='https://{{.spec.host}}'
+oc get route -n b2bi-prod ibm-sfg-b2bi-sfg-asi-internal-route-dashboard -o template --template='https://{{.spec.host}}'
 ```
 and login with the default credentials:  username:`fg_sysadmin` password: `password` 
 
@@ -111,7 +111,7 @@ git push
 # Input your github username when prompted for Username
 # Input the Github Token that you had created earlier when prompted for Password
 ```
-Sync the changes in Argo  via the `service` argo application
+Sync the changes in Argo  via the `ibm-sfg-b2bi-prod` argo application
 
 Argocd will detect these changes and create a new pod with the latest version.
 
@@ -128,7 +128,7 @@ Argocd will detect these changes and create a new pod with the latest version.
 
 ## 3. Horizontal Pod Autoscaling
 
-In this section of the lab, we see how Horizontal Pod Autoscaling works in the OpenShift cluster.  We will see how the Sterling B2B Integrator instaance dynamically scales based on the load on the system.  For this lab we will simulate the load on the system by modifing the deployment paramaters via the GitOps repo.    Sterling B2B Integrator can scale up and down manually or automatically.
+In this section of the lab, we see how Horizontal Pod Autoscaling works in the OpenShift cluster.  We will see how the Sterling B2B Integrator instaance dynamically scales based on the load on the system.  For this lab we will simulate the load on the system by modifing the deployment paramaters via the GitOps repo. Sterling B2B Integrator can scale up and down manually or automatically.
 
 The deployments settings below affect the load, which are the number of pods and the CPU usage. 
 
@@ -181,7 +181,7 @@ git push
 # Input the Github Token that you had created earlier when prompted for Password
 ```
 
-Sync the changes in Argo  via the `service` argo application
+Sync the changes in Argo  via the `ibm-sfg-b2bi-prod` argo application
 
 Now, to simulate a load on the system so that we trigger the auto scaling of pods, we will lower the target CPU utiliziation by modifying the `values.yaml` file in GitOps repo.    Follow the steps below:
 - Step 1:
@@ -231,7 +231,7 @@ git push
 # Input the Github Token that you had created earlier when prompted for Password
 ```
 
-Sync the changes in Argo via the `service` argo application
+Sync the changes in Argo via the `ibm-sfg-b2bi-prod` argo application
 
 Now go to the Redhat Openshift Console and observe the number of pods for the `asi` and `ac` Sterling componets. 
 
