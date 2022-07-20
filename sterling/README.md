@@ -99,7 +99,7 @@ git config --global user.name "Your Name"
 ![github_pat2](images/github-pat2.png "Screenshot of  Personal Access Token2")
 
 5. Enter the name of the token and ensure the **repo** box is checked
-![github_pat_name](images/github-token.png "Screenshot of  Enter PAT Name")
+![github_pat_name](images/github-pat-name.png "Screenshot of  Enter PAT Name")
 Scroll down and create the new token.
 
 6. The token is displayed only once; make sure you copy it. You will need it multiple times
