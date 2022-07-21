@@ -103,7 +103,7 @@ Scroll down and create the new token.
 
 6. The token is displayed only once; make sure you copy it. You will need it multiple times
 during the following steps.
-![github_token](images/github-token.png "Screenshot of  GitHub PAT Token")
+![github_pat_token](images/github-token.png "Screenshot of  GitHub PAT Token")
 
 ---
 
@@ -179,24 +179,30 @@ git push
 # Input the Github Token that you had created earlier when prompted for Password
 ```
 
-Sync the changes in Argo at via the `infra` argo application
+Sync the changes in Argo via the `infra` argo application
 
 
 ### 2. Services - Kustomization.yaml
-You may edit the Platform Navigator instance and specify a storage class that supports ReadWriteMany (RWX) `${GITOPS_PROFILE}/2-services/argocd/instances/ibm-platform-navigator-instance.yaml`.  The default is set to `managed-nfs-storage`.
+You may edit the Platform Navigator instance yaml and specify a storage class that supports ReadWriteMany(RWX).
+Open the yaml file as follows
+```bash
+~/$GIT_ORG/multi-tenancy-gitops/0-bootstrap/single-cluster/2-services/argocd/instances/ibm-platform-navigator-instance.yaml
+```
+The default is set to `managed-nfs-storage`. The 
     ```yaml
     storage:
         class: managed-nfs-storage
     ```
 
 Open the kustomization.yaml file for the services layer as follows
-```
+```bash
 vi ~/$GIT_ORG/multi-tenancy-gitops/0-bootstrap/single-cluster/2-services/kustomization.yaml
 ```
 
 You'll need to un-comment some of the k8s resources under the 'resources' field in the `kustomization.yaml` file in order to deploy the services layer resources required for MQ on CP4I. The resources you'll need to uncomment are shown below:
 ```yaml
 resources:
+# IBM Software
 
 ## Cloud Pak for Integration
 #- argocd/operators/ibm-ace-operator.yaml
@@ -240,7 +246,7 @@ git status
 git add -u
 
 # Finally commit and push the changes
-git commit -m "deploy services resources"
+git commit -m "Deploy services resources"
 
 git push
 # Input your github username when prompted for Username
@@ -260,10 +266,14 @@ Sync the changes in Argo  via the `services` argo application
     oc get platformnavigator -n tools -o=jsonpath='{ .items[*].status.conditions[].status }'
     # Expected output = True
     ```
-3.2.  Log in to the Platform Navigator console
+3.2.  Retrieve Platform Navigator Console URL
     ```bash
-    # Retrieve Platform Navigator Console URL
     oc get route -n tools integration-navigator-pn -o template --template='https://{{.spec.host}}'
-    # Retrieve admin password
+    ```
+    Once you have retrieved the URL and entered it in your browser, you will see a login page.
+    ![ibm_cloudpak_login](images/cloudpak-login.png "Screenshot of  IBM CloudPak login page")
+    
+    You may choose to login as admin using IBM Provided Credentials. In order to retrieve these IBM Provided Credentials you can use the following command
+    ```bash
     oc extract -n ibm-common-services secrets/platform-auth-idp-credentials --keys=admin_username,admin_password --to=-
     ```
