@@ -109,39 +109,148 @@ during the following steps.
 
 # Lab 1: Deploy Cloud Pak for Integration - MQ capability
 
-### Infrastructure - Kustomization.yaml
-1. Edit the Infrastructure layer `${GITOPS_PROFILE}/1-infra/kustomization.yaml` and un-comment the following:
-    ```yaml
-    - argocd/consolenotification.yaml
-    - argocd/namespace-ibm-common-services.yaml
-    - argocd/namespace-ci.yaml
-    - argocd/namespace-dev.yaml
-    - argocd/namespace-staging.yaml
-    - argocd/namespace-prod.yaml
-    - argocd/namespace-sealed-secrets.yaml
-    - argocd/namespace-tools.yaml
-    ```
-### Services - Kustomization.yaml
-1. Edit the Platform Navigator instance and specify a storage class that supports ReadWriteMany (RWX) `${GITOPS_PROFILE}/2-services/argocd/instances/ibm-platform-navigator-instance.yaml`.  The default is set to `managed-nfs-storage`.
+### 1. Infrastructure - Kustomization.yaml
+Open the kustomization.yaml file for the infra layer as follows
+```bash
+vi ~/$GIT_ORG/multi-tenancy-gitops/0-bootstrap/single-cluster/1-infra/kustomization.yaml
+```
+
+You'll need to un-comment some of the k8s resources under the 'resources' field in the `kustomization.yaml` file in order to deploy the kubernetes infrastructure level resources required for MQ on CP4I. The resources you'll need to uncomment are shown below:
+
+```yaml
+resources:
+#- argocd/consolelink.yaml
+- argocd/consolenotification.yaml
+- argocd/namespace-ibm-common-services.yaml
+- argocd/namespace-ci.yaml
+- argocd/namespace-dev.yaml
+- argocd/namespace-staging.yaml
+- argocd/namespace-prod.yaml
+#- argocd/namespace-cloudpak.yaml
+#- argocd/namespace-istio-system.yaml
+#- argocd/namespace-openldap.yaml
+- argocd/namespace-sealed-secrets.yaml
+- argocd/namespace-tools.yaml
+#- argocd/namespace-instana-agent.yaml
+#- argocd/namespace-robot-shop.yaml
+#- argocd/namespace-openshift-serverless.yaml
+#- argocd/namespace-knative-eventing.yaml
+#- argocd/namespace-knative-serving.yaml
+#- argocd/namespace-knative-serving-ingress.yaml
+#- argocd/namespace-openshift-storage.yaml
+#- argocd/namespace-spp.yaml
+#- argocd/namespace-spp-velero.yaml
+#- argocd/namespace-baas.yaml
+#- argocd/namespace-db2.yaml
+#- argocd/namespace-mq.yaml
+#- argocd/namespace-b2bi-prod.yaml
+#- argocd/namespace-b2bi-nonprod.yaml
+#- argocd/namespace-pem.yaml
+#- argocd/serviceaccounts-ibm-common-services.yaml
+#- argocd/serviceaccounts-tools.yaml
+#- argocd/serviceaccounts-db2.yaml
+#- argocd/serviceaccounts-mq.yaml
+#- argocd/serviceaccounts-b2bi-prod.yaml
+#- argocd/serviceaccounts-b2bi-nonprod.yaml
+#- argocd/serviceaccounts-pem.yaml
+#- argocd/sfg-b2bi-clusterwide.yaml
+#- argocd/pem-b2bi-clusterwide.yaml
+#- argocd/scc-wkc-iis.yaml
+#- argocd/norootsquash.yaml
+#- argocd/daemonset-sync-global-pullsecret.yaml
+#- argocd/storage.yaml
+#- argocd/infraconfig.yaml
+#- argocd/machinesets.yaml
+```
+
+Now deploy these changes by committing and pushing the changes to your `multi-tenancy-gitops` repository:
+```bash
+#change to the `multi-tenancy-gitops` directory
+cd ~/$GIT_ORG/multi-tenancy-gitops
+
+# Verify the changes, and add the files that have been changed
+git status
+git add -u
+ 
+# Finally commit and push the changes
+git commit -m "Deploy infrastructure resources"
+git push
+# Input your github username when prompted for Username
+# Input the Github Token that you had created earlier when prompted for Password
+```
+
+Sync the changes in Argo at via the `infra` argo application
+
+
+### 2. Services - Kustomization.yaml
+You may edit the Platform Navigator instance and specify a storage class that supports ReadWriteMany (RWX) `${GITOPS_PROFILE}/2-services/argocd/instances/ibm-platform-navigator-instance.yaml`.  The default is set to `managed-nfs-storage`.
     ```yaml
     storage:
         class: managed-nfs-storage
     ```
 
-1. Edit the Services layer `${GITOPS_PROFILE}/2-services/kustomization.yaml` uncomment the following:
-    ```yaml
-    - argocd/operators/ibm-mq-operator.yaml
-    - argocd/operators/ibm-platform-navigator.yaml
-    - argocd/instances/ibm-platform-navigator-instance.yaml
-    - argocd/operators/ibm-foundations.yaml
-    - argocd/instances/ibm-foundational-services-instance.yaml
-    - argocd/operators/ibm-automation-foundation-core-operator.yaml
-    - argocd/operators/ibm-catalogs.yaml
-    - argocd/instances/sealed-secrets.yaml
-    ```
+Open the kustomization.yaml file for the services layer as follows
+```
+vi ~/$GIT_ORG/multi-tenancy-gitops/0-bootstrap/single-cluster/2-services/kustomization.yaml
+```
 
-### Validation
-1.  Check the status of the `CommonService` and `PlatformNavigator` custom resource.
+You'll need to un-comment some of the k8s resources under the 'resources' field in the `kustomization.yaml` file in order to deploy the services layer resources required for MQ on CP4I. The resources you'll need to uncomment are shown below:
+```yaml
+resources:
+
+## Cloud Pak for Integration
+#- argocd/operators/ibm-ace-operator.yaml
+#- argocd/operators/ibm-apic-operator.yaml
+#- argocd/instances/ibm-apic-instance.yaml
+#- argocd/instances/ibm-apic-management-portal-instance.yaml
+#- argocd/instances/ibm-apic-gateway-analytics-instance.yaml
+#- argocd/operators/ibm-aspera-operator.yaml
+#- argocd/operators/ibm-assetrepository-operator.yaml
+#- argocd/operators/ibm-cp4i-operators.yaml
+#- argocd/operators/ibm-datapower-operator.yaml
+#- argocd/operators/ibm-eventstreams-operator.yaml
+#- argocd/instances/ibm-eventstreams-instance.yaml
+- argocd/operators/ibm-mq-operator.yaml
+#- argocd/operators/ibm-opsdashboard-operator.yaml
+- argocd/operators/ibm-platform-navigator.yaml
+- argocd/instances/ibm-platform-navigator-instance.yaml
+
+## IBM Foundational Services / Common Services
+- argocd/operators/ibm-foundations.yaml
+- argocd/instances/ibm-foundational-services-instance.yaml
+- argocd/operators/ibm-automation-foundation-core-operator.yaml
+#- argocd/operators/ibm-automation-foundation-operator.yaml
+#- argocd/operators/ibm-license-service-operator.yaml
+#- argocd/instances/ibm-license-service-instance.yaml
+
+## IBM Catalogs
+- argocd/operators/ibm-catalogs.yaml
+
+# Sealed Secrets
+- argocd/instances/sealed-secrets.yaml
+```
+
+Now deploy the resources changes by committing and pushing the changes to your `multi-tenancy-gitops` repository:
+```bash
+#change to the `multi-tenancy-gitops` directory
+cd ~/$GIT_ORG/multi-tenancy-gitops
+
+# Verify the changes, and add the files that have been changed
+git status
+git add -u
+
+# Finally commit and push the changes
+git commit -m "deploy services resources"
+
+git push
+# Input your github username when prompted for Username
+# Input the Github Token that you had created earlier when prompted for Password
+```
+
+Sync the changes in Argo  via the `services` argo application
+
+### 3. Validation
+3.1.  Check the status of the `CommonService` and `PlatformNavigator` custom resource.
     ```bash
     # Verify the Common Services instance has been deployed successfully
     oc get commonservice common-service -n ibm-common-services -o=jsonpath='{.status.phase}'
@@ -151,7 +260,7 @@ during the following steps.
     oc get platformnavigator -n tools -o=jsonpath='{ .items[*].status.conditions[].status }'
     # Expected output = True
     ```
-1.  Log in to the Platform Navigator console
+3.2.  Log in to the Platform Navigator console
     ```bash
     # Retrieve Platform Navigator Console URL
     oc get route -n tools integration-navigator-pn -o template --template='https://{{.spec.host}}'
