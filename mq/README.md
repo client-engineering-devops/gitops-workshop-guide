@@ -110,7 +110,7 @@ during the following steps.
 # Lab 1: Deploy Cloud Pak for Integration - MQ capability
 
 ### 1. Infrastructure - Kustomization.yaml
-Open the kustomization.yaml file for the infra layer as follows
+Open the kustomization.yaml file for the infra layer as follows:
 ```bash
 vi ~/$GIT_ORG/multi-tenancy-gitops/0-bootstrap/single-cluster/1-infra/kustomization.yaml
 ```
@@ -163,7 +163,7 @@ resources:
 #- argocd/machinesets.yaml
 ```
 
-Now deploy these changes by committing and pushing the changes to your `multi-tenancy-gitops` repository:
+Now deploy these changes by committing and pushing the changes to your `multi-tenancy-gitops` repository
 ```bash
 #change to the `multi-tenancy-gitops` directory
 cd ~/$GIT_ORG/multi-tenancy-gitops
@@ -184,17 +184,29 @@ Sync the changes in Argo via the `infra` argo application
 
 ### 2. Services - Kustomization.yaml
 You may edit the Platform Navigator instance yaml and specify a storage class that supports ReadWriteMany(RWX).
-Open the yaml file as follows
+Open the yaml file as follows:
 ```bash
-~/$GIT_ORG/multi-tenancy-gitops/0-bootstrap/single-cluster/2-services/argocd/instances/ibm-platform-navigator-instance.yaml
+vi ~/$GIT_ORG/multi-tenancy-gitops/0-bootstrap/single-cluster/2-services/argocd/instances/ibm-platform-navigator-instance.yaml
 ```
-The default is set to `managed-nfs-storage`. The 
-    ```yaml
-    storage:
-        class: managed-nfs-storage
-    ```
+The default is set to `managed-nfs-storage`. You may change its as follows:
+```yaml
+....
+spec:
+  ....
+  source:
+    path: instances/ibm-platform-navigator-instance
+    helm:
+      values: |
+        ibm-platform-navigator-instance:
+          ibmplatformnavigator:
+            name: integration-navigator
+            spec:
+              ....
+              storage:
+                class: managed-nfs-storage     <----change to your desired storage class 
+```
 
-Open the kustomization.yaml file for the services layer as follows
+Open the kustomization.yaml file for the services layer as follows:
 ```bash
 vi ~/$GIT_ORG/multi-tenancy-gitops/0-bootstrap/single-cluster/2-services/kustomization.yaml
 ```
@@ -236,7 +248,7 @@ resources:
 - argocd/instances/sealed-secrets.yaml
 ```
 
-Now deploy the resources changes by committing and pushing the changes to your `multi-tenancy-gitops` repository:
+Now deploy the resources changes by committing and pushing the changes to your `multi-tenancy-gitops` repository
 ```bash
 #change to the `multi-tenancy-gitops` directory
 cd ~/$GIT_ORG/multi-tenancy-gitops
@@ -256,7 +268,7 @@ git push
 Sync the changes in Argo  via the `services` argo application
 
 ### 3. Validation
-3.1.  Check the status of the `CommonService` and `PlatformNavigator` custom resource.
+3.1.  Check the status of the `CommonService` and `PlatformNavigator` custom resource
 ```bash
 # Verify the Common Services instance has been deployed successfully
 oc get commonservice common-service -n ibm-common-services -o=jsonpath='{.status.phase}'
@@ -270,10 +282,10 @@ oc get platformnavigator -n tools -o=jsonpath='{ .items[*].status.conditions[].s
 ```bash
 oc get route -n tools integration-navigator-pn -o template --template='https://{{.spec.host}}'
 ```
-Once you have retrieved the URL and entered it in your browser, you will see a login page.
+Once you have retrieved the URL and entered it in your browser, you will see a login page
 ![ibm_cloudpak_login](images/cloudpak-login.png "Screenshot of  IBM CloudPak login page")
     
-You may choose to login as admin using IBM Provided Credentials. In order to retrieve these IBM Provided Credentials you can use the following command
+You may choose to login as admin using IBM Provided Credentials. In order to retrieve these IBM Provided Credentials you can use the following command:
 ```bash
 oc extract -n ibm-common-services secrets/platform-auth-idp-credentials --keys=admin_username,admin_password --to=-
 ```
