@@ -213,9 +213,6 @@ vi ~/$GIT_ORG/multi-tenancy-gitops/0-bootstrap/single-cluster/2-services/kustomi
 
 You'll need to un-comment some of the k8s resources under the 'resources' field in the `kustomization.yaml` file in order to deploy the services layer resources required for MQ on CP4I. The resources you'll need to uncomment are shown below:
 ```yaml
-resources:
-# IBM Software
-
 ## Cloud Pak for Integration
 #- argocd/operators/ibm-ace-operator.yaml
 #- argocd/operators/ibm-apic-operator.yaml
