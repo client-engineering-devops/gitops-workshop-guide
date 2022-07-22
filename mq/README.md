@@ -257,23 +257,23 @@ Sync the changes in Argo  via the `services` argo application
 
 ### 3. Validation
 3.1.  Check the status of the `CommonService` and `PlatformNavigator` custom resource.
-    ```bash
-    # Verify the Common Services instance has been deployed successfully
-    oc get commonservice common-service -n ibm-common-services -o=jsonpath='{.status.phase}'
-    # Expected output = Succeeded
+```bash
+# Verify the Common Services instance has been deployed successfully
+oc get commonservice common-service -n ibm-common-services -o=jsonpath='{.status.phase}'
+# Expected output = Succeeded
 
-    # [Optional] If selected, verify the Platform Navigator instance has been deployed successfully
-    oc get platformnavigator -n tools -o=jsonpath='{ .items[*].status.conditions[].status }'
-    # Expected output = True
-    ```
+# [Optional] If selected, verify the Platform Navigator instance has been deployed successfully
+oc get platformnavigator -n tools -o=jsonpath='{ .items[*].status.conditions[].status }'
+# Expected output = True
+```
 3.2.  Retrieve Platform Navigator Console URL
-    ```bash
-    oc get route -n tools integration-navigator-pn -o template --template='https://{{.spec.host}}'
-    ```
-    Once you have retrieved the URL and entered it in your browser, you will see a login page.
-    ![ibm_cloudpak_login](images/cloudpak-login.png "Screenshot of  IBM CloudPak login page")
+```bash
+oc get route -n tools integration-navigator-pn -o template --template='https://{{.spec.host}}'
+```
+Once you have retrieved the URL and entered it in your browser, you will see a login page.
+![ibm_cloudpak_login](images/cloudpak-login.png "Screenshot of  IBM CloudPak login page")
     
-    You may choose to login as admin using IBM Provided Credentials. In order to retrieve these IBM Provided Credentials you can use the following command
-    ```bash
-    oc extract -n ibm-common-services secrets/platform-auth-idp-credentials --keys=admin_username,admin_password --to=-
-    ```
+You may choose to login as admin using IBM Provided Credentials. In order to retrieve these IBM Provided Credentials you can use the following command
+```bash
+oc extract -n ibm-common-services secrets/platform-auth-idp-credentials --keys=admin_username,admin_password --to=-
+```
