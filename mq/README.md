@@ -103,7 +103,7 @@ Scroll down and create the new token.
 
 6. The token is displayed only once; make sure you copy it. You will need it multiple times
 during the following steps.
-![github_pat_token](images/github-token.png "Screenshot of  GitHub PAT Token")
+![github_token](images/github-pat-token.png "Screenshot of  GitHub PAT Token")
 
 ---
 
